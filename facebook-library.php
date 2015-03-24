@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Facebook PHP Simple Library
+ * Simple Facebook Graph API
  * Created by Krissada Boontrigratn
  * Website http://tzv.me
  * Email im@tzv.me
