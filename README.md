@@ -1,6 +1,6 @@
 # Simple-facebook-graph-api for PHP
 
-It is simple script for calling to Facebook Graph API for PHP.
+It's php simple script for calling to Facebook Graph API.
 
 ---
 
