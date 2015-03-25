@@ -8,7 +8,7 @@ function pr($object){
 
 require('facebook-library.php');
 
-$access_token = 'Enter you access token: User token or Page token';
+$access_token = 'Enter your access token: User token or Page token';
 $facebook = new Facebook($access_token);
 $results = $facebook->api('me')
                     ->get();
