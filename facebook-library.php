@@ -12,7 +12,7 @@ class Facebook {
   /**
    * Default variables
    */
-  protected $url = 'https://graph.facebook.com/v2.2';
+  protected $url = 'https://graph.facebook.com/v2.3';
   protected $filter = 'toplevel'; /* toplevel or stream */
   protected $limit = 10;
   private $timeout = 300;
@@ -49,7 +49,6 @@ class Facebook {
    */
   private function doRequest(){
     $curl = curl_init();
-            curl_setopt($curl, CURLOPT_PROXY, "proxyb.ais.co.th:2520");
             curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
