@@ -1,25 +1,27 @@
 ## Simple-facebook-graph-api for PHP
 It's php simple script for calling to Facebook Graph API.
-Reference api: https://developers.facebook.com/docs/graph-api
 
 ### Features
 - The script is clean and simple to learning.
-- Alias like a references in Facebook Graph API.
-- Return to JSON or Object.
+- API references like a Facebook graph API. (https://developers.facebook.com/docs/graph-api)
+- Response to JSON or Array.
 
 ### How to use
 
 - GET method
 ~~~php
 $results = $facebook->api('me')
-                    ->get();
+                    ->get('json');
 print_r($results);
 ~~~
 
 - POST method
 ~~~php
-$results = $facebook->api('me')
-                    ->get();
+$datas = array(
+  'message' => 'Post by Simple Facebook Graph API, return JSON'
+);
+$results = $facebook->api('feed')
+                    ->post($datas, 'json');
 print_r($results);
 ~~~
 
