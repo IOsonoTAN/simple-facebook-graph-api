@@ -8,14 +8,14 @@ It's php simple script for calling to Facebook Graph API.
 
 ### How to use
 
-- #### GET method
+- GET method
 ~~~php
 $results = $facebook->api('me')
                     ->get();
 print_r($results);
 ~~~
 
-- #### POST method
+- POST method
 ~~~php
 $results = $facebook->api('me')
                     ->get();
