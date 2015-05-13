@@ -1,5 +1,6 @@
 ## Simple-facebook-graph-api for PHP
 It's php simple script for calling to Facebook Graph API.
+Reference api: https://developers.facebook.com/docs/graph-api
 
 ### Features
 - The script is clean and simple to learning.
@@ -23,4 +24,4 @@ print_r($results);
 ~~~
 
 ### Support or Contact
-If you have any problems, Contact im@tzv.me)
+If you have any problems, Contact to me: im@tzv.me (Krissada Boontrigratn)
