@@ -30,34 +30,50 @@ class Facebook {
   }
 
   public function api($api){
-    $this->api = $api;
+    if(substr($api, 0, 1) == '/'):
+      $this->api = $api;
+    else:
+      $this->api = '/'.$api;
+    endif;
     return $this;
   }
 
-  public function get(){
+  public function get($response_format = ''){
     $this->generateRequestURL();
+    if($response_format == 'json'):
+      return $this->doRequest();
+    endif;
     return json_decode($this->doRequest());
   }
 
-  public function getJSON(){
+  public function post($datas = array(), $response_format = ''){
     $this->generateRequestURL();
-    return $this->doRequest();
+    if($response_format == 'json'):
+      return $this->doRequest('post', $datas);
+    endif;
+    return json_decode($this->doRequest('post', $datas));
   }
 
   /**
    * Request to Facebook API
    */
-  private function doRequest(){
+  private function doRequest($method = 'get', $datas = array()){
     $curl = curl_init();
             curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
             curl_setopt($curl, CURLOPT_URL, $this->url_request);
-            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
+            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
             curl_setopt($curl, CURLOPT_TIMEOUT, $this->timeout);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($curl, CURLINFO_HEADER_OUT, true);
             curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.66 Safari/537.36");
+
+            if($method == 'post'):
+              curl_setopt($curl, CURLOPT_POST, count($datas));
+              curl_setopt($curl, CURLOPT_POSTFIELDS, '&'.http_build_query($datas));
+            endif;
+
     $results = curl_exec($curl);
     $get_info = curl_getinfo($curl, CURLINFO_HTTP_CODE);
     curl_close($curl);
