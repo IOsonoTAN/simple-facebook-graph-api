@@ -6,7 +6,13 @@ It's php simple script for calling to Facebook Graph API.
 - API references like a Facebook graph API. (https://developers.facebook.com/docs/graph-api)
 - Response to JSON or Array.
 
-### How to use
+### How to use (You can see the test.php)
+- Basic
+~~~php
+require('facebook-library.php');
+$access_token = 'Enter your access token: User token or Page token';
+$facebook = new Facebook($access_token);
+~~~
 
 - GET method
 ~~~php
