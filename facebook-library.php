@@ -46,6 +46,11 @@ class Facebook {
     return json_decode($this->doRequest());
   }
 
+  public function getURL(){
+    $this->generateRequestURL();
+    return $this->url_request;
+  }
+
   public function post($datas = array(), $response_format = ''){
     $this->generateRequestURL();
     if($response_format == 'json'):
