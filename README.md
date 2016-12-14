@@ -6,29 +6,32 @@ It's php simple script for calling to Facebook Graph API.
 - API references like a Facebook graph API. (https://developers.facebook.com/docs/graph-api)
 - Response to JSON or Array.
 
-### How to use (You can see the test.php)
+### How to use (You can see the getAPI.php and postAPI.php)
+- Before use:
+You should have access token before. (user token or page token)
+
 - Basic
 ~~~php
-require('facebook-library.php');
-$access_token = 'Enter your access token: User token or Page token';
+require('src/GraphAPI.php');
+$access_token = 'Enter your access token: user token or page token';
 $facebook = new Facebook($access_token);
 ~~~
 
 - GET method
 ~~~php
-$results = $facebook->api('me')
-                    ->get('json');
-print_r($results);
+$result = $facebook->api('me')
+                   ->get('json');
+print_r($result);
 ~~~
 
 - POST method
 ~~~php
-$datas = array(
-  'message' => 'Post by Simple Facebook Graph API, return JSON'
+$data = array(
+  'message' => 'Post by Simple Facebook Graph API, request to Facebook API and return JSON'
 );
-$results = $facebook->api('feed')
-                    ->post($datas, 'json');
-print_r($results);
+$result = $facebook->api('feed')
+                   ->post($data, 'json');
+print_r($result);
 ~~~
 
 ### Support or Contact
