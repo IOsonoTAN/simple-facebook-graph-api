@@ -7,42 +7,67 @@
  * Email im@tzv.me
  */
 
-class Facebook {
+class GraphAPI {
 
-  /**
-   * Default variables
-   */
-  protected $url = 'https://graph.facebook.com/v2.3';
-  protected $filter = 'toplevel'; /* toplevel or stream */
-  protected $limit = 10;
-  private $timeout = 300;
+  public function __construct(
+    $accessToken = '',
+    $apiUrl = 'https://graph.facebook.com',
+    $apiVersion = 'v2.8',
+    $apiFilter = 'stream', /* should be 'stream' or 'toplevel' (default is 'stream') */
+    $apiLimit = 10,
+    $apiTimeout = 500
+  ){
 
-  public function __construct($access_token = ''){
-    $this->access_token = $access_token;
+    if (!$accessToken) {
+      throw new Exception('Missing argument 1 for GraphAPI ($access_token)');
+    }
+
+    $this->access_token = $accessToken;
+    $this->filter = $apiFilter;
+    $this->limit = $apiLimit;
+    $this->timeout = $apiTimeout;
+    $this->url = $this->mergeApiUrl($apiUrl, $apiVersion);
   }
 
   /**
-   * Calling functions
+   * Methods
    */
+  private function mergeApiUrl($apiUrl, $apiVersion) {
+    $apiVersion = $this->mergeApiVersion($apiVersion);
+    if(substr($apiUrl, -1) === '/'){
+      return $apiUrl.$apiVersion;
+    } else {
+      return $apiUrl.'/'.$apiVersion;
+    } 
+  }
+
+  private function mergeApiVersion($apiVersion) {
+    if(substr($apiVersion, 0, 1) === 'v'){
+      return $apiVersion;
+    } else {
+      return 'v'.$apiVersion;
+    }
+  }
+
   private function generateRequestURL(){
     $this->url_request = $this->url.$this->api.'?'.http_build_query($this);
     return $this;
   }
 
   public function api($api){
-    if(substr($api, 0, 1) == '/'):
+    if(substr($api, 0, 1) === '/'){
       $this->api = $api;
-    else:
+    } else {
       $this->api = '/'.$api;
-    endif;
+    }
     return $this;
   }
 
   public function get($response_format = ''){
     $this->generateRequestURL();
-    if($response_format == 'json'):
+    if($response_format === 'json'){
       return $this->doRequest();
-    endif;
+    }
     return json_decode($this->doRequest());
   }
 
@@ -53,9 +78,9 @@ class Facebook {
 
   public function post($datas = array(), $response_format = ''){
     $this->generateRequestURL();
-    if($response_format == 'json'):
+    if($response_format === 'json'){
       return $this->doRequest('post', $datas);
-    endif;
+    }
     return json_decode($this->doRequest('post', $datas));
   }
 
@@ -74,10 +99,10 @@ class Facebook {
             curl_setopt($curl, CURLINFO_HEADER_OUT, true);
             curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.66 Safari/537.36");
 
-            if($method == 'post'):
+            if($method === 'post'){
               curl_setopt($curl, CURLOPT_POST, count($datas));
               curl_setopt($curl, CURLOPT_POSTFIELDS, '&'.http_build_query($datas));
-            endif;
+            }
 
     $results = curl_exec($curl);
     $get_info = curl_getinfo($curl, CURLINFO_HTTP_CODE);
