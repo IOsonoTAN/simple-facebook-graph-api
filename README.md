@@ -34,5 +34,10 @@ $result = $facebook->api('feed')
 print_r($result);
 ~~~
 
+### Unit test by PHPUnit (https://phpunit.de)
+~~~php
+phpunit tests/src/graphAPI.php
+~~~
+
 ### Support or Contact
 If you have any problems, Contact to me: im@tzv.me (Krissada Boontrigratn)
