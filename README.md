@@ -14,7 +14,7 @@ You should have access token before. (user token or page token)
 ~~~php
 require('src/GraphAPI.php');
 $access_token = 'Enter your access token: user token or page token';
-$facebook = new Facebook($access_token);
+$facebook = new GraphAPI($access_token);
 ~~~
 
 - GET method
@@ -40,4 +40,4 @@ phpunit tests/src/graphAPI.php
 ~~~
 
 ### Support or Contact
-If you have any problems, Contact to me: im@tzv.me (Krissada Boontrigratn)
+If you have any problems, Contact me: im@tzv.me (Krissada Boontrigratn)
