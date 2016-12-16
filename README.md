@@ -13,8 +13,8 @@ You should have access token before. (user token or page token)
 - Basic
 ~~~php
 require('src/GraphAPI.php');
-$access_token = 'Enter your access token: user token or page token';
-$facebook = new GraphAPI($access_token);
+$accessToken = 'Enter your access token: user token or page token';
+$facebook = new GraphAPI($accessToken (require), $apiUrl (optional), $apiVersion (optional), $apiFilter (optional), $apiLimit (optional), $apiTimeout (optional));
 ~~~
 
 - GET method
