@@ -7,8 +7,8 @@ It's php simple script for calling to Facebook Graph API.
 - Response to JSON or Array.
 
 ### How to use (You can see the getAPI.php and postAPI.php)
-- Before use:
-You should have access token before. (user token or page token)
+#### Before use:
+- You should have access token before. (user token or page token, related: https://github.com/IOsonoTAN/facebook-access-token)
 
 - Basic
 ~~~php
